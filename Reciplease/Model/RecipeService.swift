@@ -34,20 +34,9 @@ struct Recipe: Decodable {
     let yield: Int
     let healthLabels, cautions, ingredientLines: [String]
     let ingredients: [Ingredients]
+    let calories, totalWeight: Double
     let totalTime: Int
     let totalNutrients, totalDaily: [String: Total]
-    let digest: [Digest]
-}
-
-// MARK: - Digest
-struct Digest: Decodable {
-    let label, tag: String
-    let schemaOrgTag: String?
-    let total: Double
-    let hasRDI: Bool
-    let daily: Double
-    let unit: Unit
-    let sub: [Digest]?
 }
 
 enum Unit: String, Decodable {
@@ -75,3 +64,35 @@ struct Total: Decodable {
 enum RecipeError: Error {
     case noData, incorrectResponse, undecodable
 }
+
+//MARK: - class Request Service
+class RequestService {
+    
+    private let session: Alamo
+    
+    init (session: Alamo = DataReciplease()){
+        self.session = session
+    }
+    
+    func getData(callback: @escaping (Result<RecipeJSON, Error>) -> Void) {
+        guard let url = URL(string: "https://api.edamam.com/search?q=chicken,cheese&app_id=d4ca1968&app_key=b9eb6ef419398c1454c809899be163c6&from=0&to=10") else { return }
+        session.request(with: url) { (responseData) in
+            guard let data = responseData.data else {
+                callback(.failure(RecipeError.noData))
+                return
+            }
+            guard responseData.response?.statusCode == 200 else {
+                callback(.failure(RecipeError.incorrectResponse))
+                return
+            }
+            guard let response = try? JSONDecoder().decode(RecipeJSON.self, from: data) else {
+                callback(.failure(RecipeError.undecodable))
+                return
+            }
+            callback(.success(response))
+        }
+        
+    }
+    
+}
+
