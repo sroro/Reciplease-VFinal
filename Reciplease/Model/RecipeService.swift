@@ -74,8 +74,8 @@ class RequestService {
         self.session = session
     }
     
-    func getData(callback: @escaping (Result<RecipeJSON, Error>) -> Void) {
-        guard let url = URL(string: "https://api.edamam.com/search?q=chicken,cheese&app_id=d4ca1968&app_key=b9eb6ef419398c1454c809899be163c6&from=0&to=10") else { return }
+    func getData(ingredient: String ,callback: @escaping (Result<RecipeJSON, Error>) -> Void) {
+        guard let url = URL(string: "https://api.edamam.com/search?q=\(ingredient)&app_id=d4ca1968&app_key=b9eb6ef419398c1454c809899be163c6&from=0&to=1") else { return }
         session.request(with: url) { (responseData) in
             guard let data = responseData.data else {
                 callback(.failure(RecipeError.noData))

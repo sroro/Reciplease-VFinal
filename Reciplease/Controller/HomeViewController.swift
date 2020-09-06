@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import CoreData
 import Alamofire
 
 class HomeViewController: UIViewController {
     var dataReciplease = RequestService()
-    var array = [String]()
+    var arrayIngredients = [String]()
+    var dataRecipes : RecipeJSON?
     
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var ingredientTableView: UITableView!
@@ -21,31 +21,38 @@ class HomeViewController: UIViewController {
     
     @IBAction func addIngredientButton(_ sender: Any) {
         guard let text = ingredientTextField.text else { return }
-        array.append(text)
-        ingredientTableView.reloadData() 
+        arrayIngredients.append(text)
+        ingredientTableView.reloadData()
     }
     
     @IBAction func clearIngredientButton(_ sender: Any) {
-        array.removeAll()
+        arrayIngredients.removeAll()
         ingredientTableView.reloadData()
     }
     
     @IBAction func searchRecipesButton(_ sender: Any) {
-        dataReciplease.getData() { result in
+        guard let ingredients = ingredientTextField.text else { return }
+        dataReciplease.getData(ingredient:ingredients) { result in
             switch result {
             case .success(let data):
-                print(data.hits)
+                self.dataRecipes = data
+                //print(data)
                 self.performSegue(withIdentifier: "segueToTableView", sender: nil)
             case.failure(let error):
-                let alertVC = UIAlertController(title: "Error", message: "No Recipe Found", preferredStyle: .alert)
-                alertVC.addAction(UIAlertAction(title: "Error", style: .default, handler: nil))
-                self.present(alertVC, animated: true , completion: nil)
+                self.alert()
                 print(error.localizedDescription)
-                // mettre ALERTE
             }
         }
     }
     
+    // passage de données
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToTableView" {
+            let vcDestination = segue.destination as? ListRecipes
+            vcDestination?.infoRecipes = dataRecipes
+        }
+    }
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -55,12 +62,13 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count
+        return arrayIngredients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "yourIngredientCell", for: indexPath)
-        cell.textLabel?.text = ("\(array[indexPath.row])")
+        cell.textLabel?.text = ("\(arrayIngredients[indexPath.row])")
+        cell.textLabel?.textColor = .white
         return cell
     }
     
