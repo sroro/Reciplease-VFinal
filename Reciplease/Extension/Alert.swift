@@ -9,9 +9,17 @@
 import UIKit
 
 extension  UIViewController {
-    func alert() {
-        let alertVC = UIAlertController(title: "Error", message: "No Recipe Found", preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "Error", style: .default, handler: nil))
+    /// alert no recipes found
+    func alertError() {
+        let alertVC = UIAlertController(title: "Error", message: "No Recipes Found", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertVC, animated: true , completion: nil)
+    }
+    
+    /// alert no ingredient add
+    func alertAddIngredient() {
+        let alertVC = UIAlertController(title: "Error", message: "Add ingredients", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true , completion: nil)
     }
 }

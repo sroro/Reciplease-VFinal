@@ -31,20 +31,23 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func searchRecipesButton(_ sender: Any) {
-        guard let ingredients = ingredientTextField.text else { return }
-        dataReciplease.getData(ingredient:ingredients) { result in
+        guard let ingredients = ingredientTextField.text, !ingredients.isEmpty else {
+            self.alertAddIngredient()
+            return
+        }
+        dataReciplease.getData(ingredient:arrayIngredients.joined(separator: ",")) { result in
             switch result {
             case .success(let data):
-                self.dataRecipes = data
-                //print(data)
-                self.performSegue(withIdentifier: "segueToTableView", sender: nil)
+                DispatchQueue.main.async {
+                    self.dataRecipes = data
+                    self.performSegue(withIdentifier: "segueToTableView", sender: nil)
+                }
             case.failure(let error):
-                self.alert()
+                self.alertError()
                 print(error.localizedDescription)
             }
         }
     }
-    
     // passage de données
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToTableView" {
@@ -52,7 +55,7 @@ class HomeViewController: UIViewController {
             vcDestination?.infoRecipes = dataRecipes
         }
     }
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -67,7 +70,7 @@ extension HomeViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "yourIngredientCell", for: indexPath)
-        cell.textLabel?.text = ("\(arrayIngredients[indexPath.row])")
+        cell.textLabel?.text = arrayIngredients[indexPath.row]
         cell.textLabel?.textColor = .white
         return cell
     }
