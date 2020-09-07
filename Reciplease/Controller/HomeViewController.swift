@@ -13,15 +13,19 @@ class HomeViewController: UIViewController {
     var dataReciplease = RequestService()
     var arrayIngredients = [String]()
     var dataRecipes : RecipeJSON?
+    var testing = ""
+    
     
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var ingredientTableView: UITableView!
     
+     
     //MARK: - IBActions
     
     @IBAction func addIngredientButton(_ sender: Any) {
         guard let text = ingredientTextField.text else { return }
-        arrayIngredients.append(text)
+        let test = text.components(separatedBy: " ") // met chaque mot du textfield séparé dans un tableau
+        arrayIngredients = test
         ingredientTableView.reloadData()
     }
     
@@ -35,7 +39,8 @@ class HomeViewController: UIViewController {
             self.alertAddIngredient()
             return
         }
-        dataReciplease.getData(ingredient:arrayIngredients.joined(separator: ",")) { result in
+        // arrayIngredients.map{$0}.joined(separator: ",") = transformer le tableau en string sans espace
+        dataReciplease.getData(ingredient:arrayIngredients.map{$0}.joined(separator: ",")) { result in
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
@@ -48,7 +53,7 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    // passage de données
+    // passage de données vers controller ListRecipes
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToTableView" {
             let vcDestination = segue.destination as? ListRecipes
@@ -70,7 +75,8 @@ extension HomeViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "yourIngredientCell", for: indexPath)
-        cell.textLabel?.text = arrayIngredients[indexPath.row]
+        cell.textLabel?.text = arrayIngredients[indexPath.row
+        ]
         cell.textLabel?.textColor = .white
         return cell
     }
