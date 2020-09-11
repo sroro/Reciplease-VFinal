@@ -9,7 +9,9 @@
 import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
-
+    
+    var recipe : Recipe!
+    
     @IBOutlet weak var titleRecipeLabel: UILabel!
     @IBOutlet weak var ingredientLabel: UILabel!
     @IBOutlet weak var timeRecipeLabel: UILabel!
@@ -20,19 +22,41 @@ class RecipeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-    
+     
     func configure(titleRecipe: String, ingredient: String, timeRecipe: String, caloriesRecipe: String, recipeIm: String){
+        
         titleRecipeLabel.text = titleRecipe
         ingredientLabel.text = ingredient
         timeRecipeLabel.text = ("\(timeRecipe) min")
         caloriesRecipeLabel.text = ("\(caloriesRecipe) Kcal")
-        recipeImage.image = UIImage(named: recipeIm)
+        //guard let imageUrl = URL(string: recipe.image) else { return }
+        
+        
+     
     }
-    
+
 }
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            // Create data from url
+            if let data = try? Data(contentsOf: url) {
+                // Create image from data
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}
+
+

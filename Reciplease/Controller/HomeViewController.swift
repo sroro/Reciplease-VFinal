@@ -24,8 +24,8 @@ class HomeViewController: UIViewController {
     
     @IBAction func addIngredientButton(_ sender: Any) {
         guard let text = ingredientTextField.text else { return }
-        let test = text.components(separatedBy: " ") // met chaque mot du textfield séparé dans un tableau
-        arrayIngredients = test
+        let textIntoArray = text.components(separatedBy: " ") // met chaque mot du textfield séparé dans un tableau
+        arrayIngredients = textIntoArray
         ingredientTableView.reloadData()
     }
     
