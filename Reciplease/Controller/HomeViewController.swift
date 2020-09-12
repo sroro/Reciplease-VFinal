@@ -75,8 +75,7 @@ extension HomeViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "yourIngredientCell", for: indexPath)
-        cell.textLabel?.text = arrayIngredients[indexPath.row
-        ]
+        cell.textLabel?.text = arrayIngredients[indexPath.row]
         cell.textLabel?.textColor = .white
         return cell
     }

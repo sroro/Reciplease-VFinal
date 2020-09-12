@@ -35,10 +35,40 @@ class RecipeTableViewCell: UITableViewCell {
         ingredientLabel.text = ingredient
         timeRecipeLabel.text = ("\(timeRecipe) min")
         caloriesRecipeLabel.text = ("\(caloriesRecipe) Kcal")
-        //guard let imageUrl = URL(string: recipe.image) else { return }
-        
+        guard let imageUrl = URL(string: recipeIm) else { return }
+        recipeImage.load(url: imageUrl)
         
      
+    }
+    
+
+    func loadImage(with address: String) {
+
+        // Perform on background thread
+        DispatchQueue.global().async {
+
+            // Create url from string address
+            guard let url = URL(string: address) else {
+                return
+            }
+
+            // Create data from url (You can handle exeption with try-catch)
+            guard let data = try? Data(contentsOf: url) else {
+                return
+            }
+
+            // Create image from data
+            guard let image = UIImage(data: data) else {
+                return
+            }
+
+            // Perform on UI thread
+            DispatchQueue.main.async {
+                let imageView = UIImageView(image: image)
+                /* Do some stuff with your imageView */
+                self.recipeImage = imageView
+            }
+        }
     }
 
 }
