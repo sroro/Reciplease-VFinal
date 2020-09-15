@@ -28,13 +28,16 @@ class ListRecipes: UITableViewController{
         guard let cell = listRecipesTableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else { return UITableViewCell() }
         let recipes = infoRecipes?.hits
         guard let recipe = recipes?[indexPath.row].recipe else { return UITableViewCell() }
-        cell.configure(titleRecipe: recipe.label, ingredient: recipe.ingredients.map {$0.text}.joined(separator: ", "), timeRecipe: "\(recipe.totalTime)", caloriesRecipe: formatResult(result: recipe.calories), recipeIm: recipe.image)
+//        cell.configure(titleRecipe: recipe.label, ingredient: recipe.ingredients.map {$0.text}.joined(separator: ", "), timeRecipe: "\(recipe.totalTime)", caloriesRecipe: formatResult(result: recipe.calories), recipeIm: recipe.image)
+        
+        cell.recipe = recipe
+        
         return cell
     }
     
     // height of cell
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 200
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -42,16 +45,7 @@ class ListRecipes: UITableViewController{
         print(indexPath.row)
     }
     
-    
-    func formatResult(result: Double) -> String! {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 0
-        guard let resultFormated = formatter.string(from: NSNumber(value: result)) else { return nil
-        }
-        return resultFormated
-    }
-    
-    
+   
  
 }
 

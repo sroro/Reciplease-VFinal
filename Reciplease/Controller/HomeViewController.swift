@@ -24,8 +24,8 @@ class HomeViewController: UIViewController {
     
     @IBAction func addIngredientButton(_ sender: Any) {
         guard let text = ingredientTextField.text else { return }
-        let textIntoArray = text.components(separatedBy: " ") // met chaque mot du textfield séparé dans un tableau
-        arrayIngredients = textIntoArray
+        let _ = text.transformToArray.forEach {arrayIngredients.append($0)}
+        
         ingredientTableView.reloadData()
     }
     
@@ -81,6 +81,7 @@ extension HomeViewController: UITableViewDataSource{
     }
     
 }
+
 
 
 
