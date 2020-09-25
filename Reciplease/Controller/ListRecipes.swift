@@ -10,7 +10,8 @@ import UIKit
 
 class ListRecipes: UITableViewController{
     
-    var infoRecipes : RecipeJSON?
+    var recipeSelected : Recipe?
+    var recipes : [Hit]?
     
     @IBOutlet var listRecipesTableView: UITableView!
     
@@ -21,32 +22,36 @@ class ListRecipes: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return infoRecipes?.hits.count ?? 0
+        return recipes?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = listRecipesTableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else { return UITableViewCell() }
-        let recipes = infoRecipes?.hits
         guard let recipe = recipes?[indexPath.row].recipe else { return UITableViewCell() }
-//        cell.configure(titleRecipe: recipe.label, ingredient: recipe.ingredients.map {$0.text}.joined(separator: ", "), timeRecipe: "\(recipe.totalTime)", caloriesRecipe: formatResult(result: recipe.calories), recipeIm: recipe.image)
-        
         cell.recipe = recipe
-        
         return cell
     }
     
     // height of cell
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 220
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        recipeSelected = recipes?[indexPath.row].recipe // stock la recette selectionner par la cellule
         performSegue(withIdentifier: "segueToRecipe", sender: nil)
-        print(indexPath.row)
+        
+    } 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToRecipe" {
+            let vcDestination = segue.destination as? RecipeController
+            vcDestination?.recipeSelected = recipeSelected
+        }
     }
     
-   
- 
+    
+    
 }
 
 

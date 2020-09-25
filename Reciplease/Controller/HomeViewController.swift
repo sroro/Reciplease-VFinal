@@ -13,19 +13,20 @@ class HomeViewController: UIViewController {
     var dataReciplease = RequestService()
     var arrayIngredients = [String]()
     var dataRecipes : RecipeJSON?
-    var testing = ""
     
     
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var ingredientTableView: UITableView!
     
-     
+    override func viewDidAppear(_ animated: Bool) {
+        ingredientTextField.backgroundColor? = .white
+    }
+    
     //MARK: - IBActions
     
     @IBAction func addIngredientButton(_ sender: Any) {
         guard let text = ingredientTextField.text else { return }
         let _ = text.transformToArray.forEach {arrayIngredients.append($0)}
-        
         ingredientTableView.reloadData()
     }
     
@@ -39,6 +40,7 @@ class HomeViewController: UIViewController {
             self.alertAddIngredient()
             return
         }
+        
         // arrayIngredients.map{$0}.joined(separator: ",") = transformer le tableau en string sans espace
         dataReciplease.getData(ingredient:arrayIngredients.map{$0}.joined(separator: ",")) { result in
             switch result {
@@ -53,11 +55,12 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
     // passage de données vers controller ListRecipes
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToTableView" {
             let vcDestination = segue.destination as? ListRecipes
-            vcDestination?.infoRecipes = dataRecipes
+            vcDestination?.recipes = dataRecipes?.hits
         }
     }
     
