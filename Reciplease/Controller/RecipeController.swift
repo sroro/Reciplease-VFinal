@@ -7,25 +7,33 @@
 //
 
 import UIKit
-import CoreData
+import SDWebImage
 
 class RecipeController: UIViewController {
     var recipeSelected : Recipe?
     var favorite = false
     
+
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var ingredientTableView: UITableView!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
-    @IBAction func getDirectionsButton(_ sender: Any) {
-        if let url = URL(string: recipeSelected!.shareAs) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            print(url)
-        }
+    @IBAction func tappedDirectionRecipe(_ sender: UIButton) {
+        guard let url = URL(string: recipeSelected!.url)  else  { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    @IBAction func favoriteTapButton(_ sender: Any) {
-      
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        recipeImage.sd_setImage(with: URL(string: recipeSelected!.image), placeholderImage: UIImage(named: "image"))
+    }
+    
+    
+    @IBAction func favoriteTapButton(_ sender: UIButton) {
+        
+        favorite = !favorite
+        print(favorite)
+        // TODO - change 
     }
     
     
@@ -44,7 +52,7 @@ extension RecipeController : UITableViewDataSource {
     }
     
     
-   
+    
 }
 
 

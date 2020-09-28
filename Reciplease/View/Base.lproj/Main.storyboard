@@ -199,7 +199,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Reciplease" id="ASo-gQ-aAv">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="w3q-oo-wg6"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="w3q-oo-wg6">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="listRecipesTableView" destination="4bR-Ey-OQo" id="KqX-OM-SSr"/>
@@ -276,6 +278,9 @@
                                 <state key="normal" title="Get Directions">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="tappedDirectionRecipe:" destination="c2x-KV-zLy" eventType="touchUpInside" id="rLI-5W-dj8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LVt-w7-NJG"/>
@@ -307,6 +312,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="favoriteButton" destination="Qxs-Le-zPP" id="HUd-cA-dgs"/>
+                        <outlet property="recipeImage" destination="RyJ-Ue-Kej" id="Ar6-rF-TCV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwA-rU-aSh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -342,6 +348,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w2y-h0-ciL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" systemColor="viewFlipsideBackgroundColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -381,10 +388,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="71L-qa-hwp"/>
+        <segue reference="Pwd-Xw-VxX"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="image" width="500" height="500"/>
+        <image name="image" width="512" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
