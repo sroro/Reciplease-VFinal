@@ -303,7 +303,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="cB0-bc-VRP">
-                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="Qxs-Le-zPP">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="star" catalog="system" id="Qxs-Le-zPP">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="favoriteTapButton:" destination="c2x-KV-zLy" id="lds-hW-dAS"/>

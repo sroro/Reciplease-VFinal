@@ -13,7 +13,7 @@ class RecipeController: UIViewController {
     var recipeSelected : Recipe?
     var favorite = false
     
-
+    
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var ingredientTableView: UITableView!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
@@ -25,17 +25,21 @@ class RecipeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // add the image on the recipe selected
         recipeImage.sd_setImage(with: URL(string: recipeSelected!.image), placeholderImage: UIImage(named: "image"))
     }
     
-    
-    @IBAction func favoriteTapButton(_ sender: UIButton) {
-        
-        favorite = !favorite
-        print(favorite)
-        // TODO - change 
+    @IBAction func favoriteTapButton(_ sender: UIBarButtonItem) {
+        favorite.toggle() // change booleen when tapped button
+        switch favorite {
+        case true:
+            sender.image = UIImage(systemName: "star.fill")
+            // add coreData
+        case false:
+            sender.image = UIImage(systemName: "star")
+            break
+        }
     }
-    
     
 }
 
@@ -50,9 +54,6 @@ extension RecipeController : UITableViewDataSource {
         cell.textLabel?.text = ingredientsRecipe
         return cell
     }
-    
-    
-    
 }
 
 
