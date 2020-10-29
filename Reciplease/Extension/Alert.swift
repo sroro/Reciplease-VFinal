@@ -22,4 +22,16 @@ extension  UIViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true , completion: nil)
     }
+    
+    func alertAddRecipeFavorite() {
+        let alertVC = UIAlertController(title: "HAPPY MEAL", message: "Recipe Add in Favorite", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertVC, animated: true , completion: nil)
+    }
+    
+    func alertDeleteRecipeFavorite() {
+        let alertVC = UIAlertController(title: "No", message: "Recipe Delete of Favorite", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertVC, animated: true , completion: nil)
+    }
 }

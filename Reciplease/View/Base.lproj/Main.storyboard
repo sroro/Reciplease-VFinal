@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Favorite Recipes Controller-->
         <scene sceneID="rNc-3f-scB">
             <objects>
-                <viewController id="UFH-aC-DaI" sceneMemberID="viewController">
+                <viewController id="UFH-aC-DaI" customClass="FavoriteRecipesController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iNa-wA-dxb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,6 +20,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Gn-jj-fQd">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="UFH-aC-DaI" id="PZd-H6-X1l"/>
+                                    <outlet property="delegate" destination="UFH-aC-DaI" id="eeD-2i-Iac"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5lM-jB-LOn"/>
@@ -33,6 +37,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="mZ3-aC-Jq9"/>
                     <connections>
+                        <outlet property="favoriteTableView" destination="7Gn-jj-fQd" id="6sE-Po-Jiz"/>
                         <segue destination="c2x-KV-zLy" kind="show" identifier="segueToFavorite" id="71L-qa-hwp"/>
                     </connections>
                 </viewController>
@@ -388,7 +393,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Pwd-Xw-VxX"/>
+        <segue reference="71L-qa-hwp"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="image" width="512" height="512"/>

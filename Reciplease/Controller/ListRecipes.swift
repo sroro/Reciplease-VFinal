@@ -21,6 +21,8 @@ class ListRecipes: UITableViewController{
         listRecipesTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes?.count ?? 0
     }
@@ -49,9 +51,6 @@ class ListRecipes: UITableViewController{
             vcDestination?.recipeSelected = recipeSelected
         }
     }
-    
-    
-    
 }
 
 
