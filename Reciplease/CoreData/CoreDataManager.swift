@@ -38,6 +38,8 @@ final class CoreDataManager {
         recipe.calories = calories
         recipe.time = time
         recipe.ingredients = ingredients
+        recipe.url = url
+        recipe.image = image
         coreDataStack.saveContext()
     }
     

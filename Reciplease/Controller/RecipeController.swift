@@ -41,28 +41,20 @@ class RecipeController: UIViewController {
         guard let recipeName = recipeSelected?.label else { return }
         guard let recipeTime = recipeSelected?.totalTime else { return }
         let recipeConvertTime = String(recipeTime)
-
-        // transform string to URL
-        guard let imageUrl = URL(string: recipe.image) else { return }
-
-        do {
-            let imageData = try Data(contentsOf: imageUrl)
-            switch coreDataManager.isRecipeRegistered(name: recipeName) {
-            case true:
-                sender.image = UIImage(systemName: "star")
-                alertDeleteRecipeFavorite()
-                coreDataManager.deleteRecipe(name: recipeName)
-            // supprimer la recette
-            // add coreData
-            case false:
-
-                sender.image = UIImage(systemName: "star.fill")
-                alertAddRecipeFavorite()
-                // ajouter la recette en favoris
-                coreDataManager.createTask(name: recipeName, calories: recipe.calories, time: recipeConvertTime, ingredients: recipe.ingredientLines, url: recipe.url, image: imageData)
-            }
-        } catch {
-            print(error)
+        
+        switch coreDataManager.isRecipeRegistered(name: recipeName) {
+        case true:
+            sender.image = UIImage(systemName: "star")
+            alertDeleteRecipeFavorite()
+            coreDataManager.deleteRecipe(name: recipeName)
+        // supprimer la recette
+        // add coreData
+        case false:
+            
+            sender.image = UIImage(systemName: "star.fill")
+            alertAddRecipeFavorite()
+            // ajouter la recette en favoris
+            coreDataManager.createTask(name: recipeName, calories: recipe.calories, time: recipeConvertTime, ingredients: recipe.ingredientLines, url: recipe.url, image: recipe.image.data)
         }
     }
     
