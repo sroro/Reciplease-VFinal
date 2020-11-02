@@ -34,6 +34,14 @@ class RecipeController: UIViewController {
         coreDataManager = CoreDataManager(coreDataStack: coredataStack)
     }
     
+    // permet de garder l'icon rempli quand la recette est en favorite
+    override func viewWillAppear(_ animated: Bool) {
+        guard let recipeName = recipeSelected?.label else { return }
+        if coreDataManager?.isRecipeRegistered(name: recipeName ) == true {
+            favoriteButton.image = UIImage(systemName: "star.fill")
+        }
+    }
+    
     @IBAction func favoriteTapButton(_ sender: UIBarButtonItem) {
         
         guard let coreDataManager = coreDataManager else { return }
@@ -55,6 +63,7 @@ class RecipeController: UIViewController {
             alertAddRecipeFavorite()
             // ajouter la recette en favoris
             coreDataManager.createTask(name: recipeName, calories: recipe.calories, time: recipeConvertTime, ingredients: recipe.ingredientLines, url: recipe.url, image: recipe.image.data)
+
         }
     }
     

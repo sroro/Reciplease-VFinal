@@ -13,12 +13,11 @@ class ListRecipes: UITableViewController{
     var recipeSelected : Recipe?
     var recipes : [Hit]?
     
-    @IBOutlet var listRecipesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // utilsier la cellule personnalisé .xib
-        listRecipesTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
+        tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
     }
     
     
@@ -28,7 +27,7 @@ class ListRecipes: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = listRecipesTableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else { return UITableViewCell() }
         guard let recipe = recipes?[indexPath.row].recipe else { return UITableViewCell() }
         cell.recipe = recipe
         return cell

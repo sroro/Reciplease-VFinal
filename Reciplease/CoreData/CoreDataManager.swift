@@ -44,6 +44,7 @@ final class CoreDataManager {
     }
     
     
+    
     func isRecipeRegistered(name: String) -> Bool {
         // recuperer toutes les recettes
         let request: NSFetchRequest<RecipeInformation> = RecipeInformation.fetchRequest()
