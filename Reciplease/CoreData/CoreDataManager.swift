@@ -74,5 +74,5 @@ final class CoreDataManager {
         recipes.forEach { managedObjectContext.delete($0) }
         coreDataStack.saveContext()
     }
-  
+    
 }

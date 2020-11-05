@@ -52,13 +52,12 @@ class RecipeController: UIViewController {
         
         switch coreDataManager.isRecipeRegistered(name: recipeName) {
         case true:
+            //si la recette est en favoris , la supprimer
             sender.image = UIImage(systemName: "star")
             alertDeleteRecipeFavorite()
             coreDataManager.deleteRecipe(name: recipeName)
-        // supprimer la recette
-        // add coreData
         case false:
-            
+            // si la recette n'est pas en favoris , l'ajouter et modifier l'icone
             sender.image = UIImage(systemName: "star.fill")
             alertAddRecipeFavorite()
             // ajouter la recette en favoris

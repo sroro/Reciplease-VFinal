@@ -334,7 +334,7 @@
             </objects>
             <point key="canvasLocation" x="492.75362318840581" y="-266.51785714285711"/>
         </scene>
-        <!--Favorite Recipes Controller-->
+        <!--Favorite Recipes-->
         <scene sceneID="cOX-zx-hM4">
             <objects>
                 <tableViewController id="oPH-xC-rxp" customClass="FavoriteRecipesController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -347,7 +347,7 @@
                             <outlet property="delegate" destination="oPH-xC-rxp" id="Bjx-c0-82S"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Uae-JH-33f"/>
+                    <navigationItem key="navigationItem" title="Favorite Recipes" id="Uae-JH-33f"/>
                     <connections>
                         <segue destination="c2x-KV-zLy" kind="show" identifier="segueFavoriteToRecipe" id="QUD-R1-dE7"/>
                     </connections>
@@ -362,7 +362,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lcK-4M-K18" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorite" image="star" catalog="system" id="dND-7g-7b4"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o4P-99-PIr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="o4P-99-PIr">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
