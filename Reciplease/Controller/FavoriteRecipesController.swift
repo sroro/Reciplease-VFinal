@@ -12,7 +12,9 @@ import CoreData
 class FavoriteRecipesController : UITableViewController {
     
     var coreDataManager : CoreDataManager?
-
+    var recipeDetails : RecipeDetails?
+    var recipeInformation : RecipeInformation?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +22,9 @@ class FavoriteRecipesController : UITableViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
+
+        
     }
-    
     // permet de recharger la tableview une fois une new recette ajouter
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
@@ -41,9 +44,25 @@ class FavoriteRecipesController : UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        recipeInformation = coreDataManager?.recipes[indexPath.row]
+        performSegue(withIdentifier: "segueFavoriteToRecipe", sender: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 220
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let recipeInformation = recipeInformation else { return }
+        if segue.identifier == "segueFavoriteToRecipe" {
+            let successVC = segue.destination as! RecipeController
+            let recipeDetails = RecipeDetails(name: recipeInformation.name!, url: recipeInformation.url!, time: recipeInformation.time!, ingredients: recipeInformation.ingredients!, image: recipeInformation.image!)
+            successVC.recipeDetails = recipeDetails
+        }
+    }
+    
 }
 
+
+// revenir en arriere quand on enleve la recette des favoris

@@ -13,14 +13,13 @@ class ListRecipes: UITableViewController{
     var recipeSelected : Recipe?
     var recipes : [Hit]?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // utilsier la cellule personnalisé .xib
         tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
     }
     
-    
+    //MARK: - Tableview
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes?.count ?? 0
@@ -41,13 +40,18 @@ class ListRecipes: UITableViewController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         recipeSelected = recipes?[indexPath.row].recipe // stock la recette selectionner par la cellule
         performSegue(withIdentifier: "segueToRecipe", sender: nil)
-        
-    } 
+    }
+    
+    //MARK: - prepare Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let recipeSelected = recipeSelected else { return }
+        
         if segue.identifier == "segueToRecipe" {
             let vcDestination = segue.destination as? RecipeController
-            vcDestination?.recipeSelected = recipeSelected
+            let recipeDetails = RecipeDetails(name: recipeSelected.label, url: recipeSelected.url, time: recipeSelected.totalTime.convert, ingredients: recipeSelected.ingredientLines, image: recipeSelected.image.data!)
+            vcDestination?.recipeDetails = recipeDetails
+            
         }
     }
 }

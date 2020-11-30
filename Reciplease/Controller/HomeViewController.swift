@@ -25,6 +25,10 @@ class HomeViewController: UIViewController {
     //MARK: - IBActions
     
     @IBAction func addIngredientButton(_ sender: Any) {
+        guard let ingredients = ingredientTextField.text, !ingredients.isEmpty else {
+            self.alertAddIngredient()
+            return
+        } 
         guard let text = ingredientTextField.text else { return }
         let _ = text.transformToArray.forEach {arrayIngredients.append($0)}
         ingredientTableView.reloadData()
@@ -36,11 +40,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func searchRecipesButton(_ sender: Any) {
-        guard let ingredients = ingredientTextField.text, !ingredients.isEmpty else {
-            self.alertAddIngredient()
-            return
-        }
-        
+       
         // arrayIngredients.map{$0}.joined(separator: ",") = transformer le tableau en string sans espace
         dataReciplease.getData(ingredient:arrayIngredients.map{$0}.joined(separator: ",")) { result in
             switch result {

@@ -20,4 +20,6 @@ extension String {
         guard let data = try? Data(contentsOf: url) else { return nil }
         return data
     }
+    
+    
 }

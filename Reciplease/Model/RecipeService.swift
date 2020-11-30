@@ -26,25 +26,18 @@ struct Hit: Decodable {
 
 // MARK: - Recipe
 struct Recipe: Decodable {
-    let uri: String
     let label: String
     let image: String
-    let source: String
-    let url, shareAs: String
-    let yield: Int
-    let healthLabels, cautions, ingredientLines: [String]
+    let url: String
+    let ingredientLines: [String]
     let ingredients: [Ingredients]
-    let calories, totalWeight: Double
+    let calories: Double
     let totalTime: Int
-    let totalNutrients, totalDaily: [String: Total]
 }
 
 enum Unit: String, Decodable {
-    case empty = "%"
     case g = "g"
     case kcal = "kcal"
-    case mg = "mg"
-    case µg = "µg"
 }
 
 // MARK: - Ingredient
@@ -52,13 +45,6 @@ struct Ingredients: Decodable {
     let text: String
     let weight: Double
     let image: String?
-}
-
-// MARK: - Total
-struct Total: Decodable {
-    let label: String
-    let quantity: Double
-    let unit: Unit
 }
 
 enum RecipeError: Error {
@@ -96,3 +82,13 @@ class RequestService {
     
 }
 
+// création d'un type pour stocker les recttes de l'appel reseau et des favoris
+struct RecipeDetails {
+    let name : String
+    let url : String
+    let time : String
+    let ingredients : [String]
+    let image : Data
+    
+    // ajout calories
+}

@@ -13,9 +13,10 @@
 		94535592252CA27000B86ACF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94535591252CA27000B86ACF /* CoreDataStack.swift */; };
 		94535596252CA38D00B86ACF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94535595252CA38D00B86ACF /* CoreDataManager.swift */; };
 		9453559E2530536B00B86ACF /* FavoriteRecipesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9453559D2530536B00B86ACF /* FavoriteRecipesController.swift */; };
+		945557F7255984C900EEBD8D /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945557F6255984C900EEBD8D /* Convert.swift */; };
 		946972AA250008A00081598B /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946972A9250008A00081598B /* RecipeController.swift */; };
 		946972AD2504E6BD0081598B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946972AC2504E6BD0081598B /* Alert.swift */; };
-		947D190F250F560600CD5F2E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947D190E250F560600CD5F2E /* String.swift */; };
+		947D190F250F560600CD5F2E /* String + Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947D190E250F560600CD5F2E /* String + Data.swift */; };
 		94EDBE6F24F6B00D00BB1F64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDBE6E24F6B00D00BB1F64 /* AppDelegate.swift */; };
 		94EDBE7124F6B00D00BB1F64 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDBE7024F6B00D00BB1F64 /* SceneDelegate.swift */; };
 		94EDBE7324F6B00D00BB1F64 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDBE7224F6B00D00BB1F64 /* HomeViewController.swift */; };
@@ -52,9 +53,10 @@
 		94535591252CA27000B86ACF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		94535595252CA38D00B86ACF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9453559D2530536B00B86ACF /* FavoriteRecipesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesController.swift; sourceTree = "<group>"; };
+		945557F6255984C900EEBD8D /* Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
 		946972A9250008A00081598B /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
 		946972AC2504E6BD0081598B /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		947D190E250F560600CD5F2E /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		947D190E250F560600CD5F2E /* String + Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Data.swift"; sourceTree = "<group>"; };
 		94EDBE6B24F6B00D00BB1F64 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94EDBE6E24F6B00D00BB1F64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94EDBE7024F6B00D00BB1F64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				946972AC2504E6BD0081598B /* Alert.swift */,
-				947D190E250F560600CD5F2E /* String.swift */,
+				947D190E250F560600CD5F2E /* String + Data.swift */,
+				945557F6255984C900EEBD8D /* Convert.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -387,7 +390,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				94EDBE7924F6B00D00BB1F64 /* Reciplease.xcdatamodeld in Sources */,
-				947D190F250F560600CD5F2E /* String.swift in Sources */,
+				945557F7255984C900EEBD8D /* Convert.swift in Sources */,
+				947D190F250F560600CD5F2E /* String + Data.swift in Sources */,
 				94EDBE9C24F7ECB200BB1F64 /* ListRecipes.swift in Sources */,
 				94535592252CA27000B86ACF /* CoreDataStack.swift in Sources */,
 				94EDBE9F24F9340300BB1F64 /* DataReciplease.swift in Sources */,

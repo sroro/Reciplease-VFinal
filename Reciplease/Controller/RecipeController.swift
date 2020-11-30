@@ -10,25 +10,22 @@ import UIKit
 import SDWebImage
 
 class RecipeController: UIViewController {
-    var recipeSelected : Recipe?
-    var favorite = false
-    var coreDataManager : CoreDataManager?
     
+    //MARK: - properties
+    var recipeDetails : RecipeDetails?
+    var coreDataManager : CoreDataManager?
+    var favorite = false
+    
+    //MARK: - IBOutlet
     
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var ingredientTableView: UITableView!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
-    @IBAction func tappedDirectionRecipe(_ sender: UIButton) {
-        guard let url = URL(string: recipeSelected!.url)  else  { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // add the image on the recipe selected
-        recipeImage.sd_setImage(with: URL(string: recipeSelected!.image), placeholderImage: UIImage(named: "image"))
-        
+        guard let imageTest = recipeDetails?.image else { return }
+        recipeImage.image = UIImage(data: imageTest)
         guard let appdelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let coredataStack = appdelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coredataStack)
@@ -36,51 +33,55 @@ class RecipeController: UIViewController {
     
     // permet de garder l'icon rempli quand la recette est en favorite
     override func viewWillAppear(_ animated: Bool) {
-        guard let recipeName = recipeSelected?.label else { return }
+        guard let recipeName = recipeDetails?.name else { return }
         if coreDataManager?.isRecipeRegistered(name: recipeName ) == true {
             favoriteButton.image = UIImage(systemName: "star.fill")
         }
     }
     
+    // MARK: - IBActions
+    
+    @IBAction func tappedDirectionRecipe(_ sender: UIButton) {
+        guard let url = URL(string: recipeDetails!.url)  else  { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    
     @IBAction func favoriteTapButton(_ sender: UIBarButtonItem) {
-        
         guard let coreDataManager = coreDataManager else { return }
-        guard let recipe = recipeSelected else { return }
-        guard let recipeName = recipeSelected?.label else { return }
-        guard let recipeTime = recipeSelected?.totalTime else { return }
-        let recipeConvertTime = String(recipeTime)
-        
-        switch coreDataManager.isRecipeRegistered(name: recipeName) {
+        guard let recipe = recipeDetails else { return }
+       
+        switch coreDataManager.isRecipeRegistered(name: recipe.name) {
+        //si la recette est en favoris , la supprimer
         case true:
-            //si la recette est en favoris , la supprimer
+            _ = navigationController?.popViewController(animated: true) // revient au conroller precedent qd la recette n'est plus en favoris
             sender.image = UIImage(systemName: "star")
             alertDeleteRecipeFavorite()
-            coreDataManager.deleteRecipe(name: recipeName)
+            coreDataManager.deleteRecipe(name: recipe.name)
+          
         case false:
             // si la recette n'est pas en favoris , l'ajouter et modifier l'icone
             sender.image = UIImage(systemName: "star.fill")
             alertAddRecipeFavorite()
             // ajouter la recette en favoris
-            coreDataManager.createTask(name: recipeName, calories: recipe.calories, time: recipeConvertTime, ingredients: recipe.ingredientLines, url: recipe.url, image: recipe.image.data)
-
+            coreDataManager.createTask(name: recipe.name, calories: 0.0, time: recipe.time, ingredients: recipe.ingredients, url: recipe.url, image: recipe.image)
         }
+
+
+        
     }
-    
 }
 
 extension RecipeController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipeSelected!.ingredientLines.count
+        return recipeDetails?.ingredients.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientRecipeCell", for: indexPath)
-        guard let ingredientsRecipe = recipeSelected?.ingredients[indexPath.row].text else { return UITableViewCell() }
+        guard let ingredientsRecipe = recipeDetails?.ingredients[indexPath.row] else { return UITableViewCell() }
         cell.textLabel?.text = ingredientsRecipe
         return cell
     }
 }
-
-
-
 
