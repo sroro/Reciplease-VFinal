@@ -157,7 +157,7 @@
         <!--Reciplease-->
         <scene sceneID="Rgv-hm-sQN">
             <objects>
-                <tableViewController id="YeW-d6-WFr" customClass="ListRecipes" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="YeW-d6-WFr" customClass="RecipeListViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4bR-Ey-OQo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,7 +183,7 @@
         <!--Reciplease-->
         <scene sceneID="B6O-Gm-Iy8">
             <objects>
-                <viewController id="c2x-KV-zLy" customClass="RecipeController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="c2x-KV-zLy" customClass="RecipeViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H0v-D3-mpZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -337,7 +337,7 @@
         <!--Favorite Recipes-->
         <scene sceneID="cOX-zx-hM4">
             <objects>
-                <tableViewController id="oPH-xC-rxp" customClass="FavoriteRecipesController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="oPH-xC-rxp" customClass="FavoriteRecipesViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="N4J-Rd-dOt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

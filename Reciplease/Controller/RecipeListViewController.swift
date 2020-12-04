@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ListRecipes: UITableViewController{
+final class RecipeListViewController: UITableViewController{
     
-    var recipeSelected : Recipe?
+    //MARK: - Properties
+    
+    private var recipeSelected : Recipe?
     var recipes : [Hit]?
     
     override func viewDidLoad() {
@@ -42,14 +44,14 @@ class ListRecipes: UITableViewController{
         performSegue(withIdentifier: "segueToRecipe", sender: nil)
     }
     
-    //MARK: - prepare Segue
+    //MARK: - Prepare Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let recipeSelected = recipeSelected else { return }
         
         if segue.identifier == "segueToRecipe" {
-            let vcDestination = segue.destination as? RecipeController
-            let recipeDetails = RecipeDetails(name: recipeSelected.label, url: recipeSelected.url, time: recipeSelected.totalTime.convert, ingredients: recipeSelected.ingredientLines, image: recipeSelected.image.data!)
+            let vcDestination = segue.destination as? RecipeViewController
+            let recipeDetails = RecipeDetails(name: recipeSelected.label, url: recipeSelected.url, time: recipeSelected.totalTime.convert, ingredients: recipeSelected.ingredientLines, image: recipeSelected.image.data!, calories: recipeSelected.calories)
             vcDestination?.recipeDetails = recipeDetails
             
         }

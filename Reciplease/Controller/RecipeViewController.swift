@@ -9,12 +9,13 @@
 import UIKit
 import SDWebImage
 
-class RecipeController: UIViewController {
+final class RecipeViewController: UIViewController {
     
     //MARK: - properties
+    
     var recipeDetails : RecipeDetails?
-    var coreDataManager : CoreDataManager?
-    var favorite = false
+    private var coreDataManager : CoreDataManager?
+    private var favorite = false
     
     //MARK: - IBOutlet
     
@@ -50,29 +51,27 @@ class RecipeController: UIViewController {
     @IBAction func favoriteTapButton(_ sender: UIBarButtonItem) {
         guard let coreDataManager = coreDataManager else { return }
         guard let recipe = recipeDetails else { return }
-       
+        
         switch coreDataManager.isRecipeRegistered(name: recipe.name) {
         //si la recette est en favoris , la supprimer
         case true:
-            _ = navigationController?.popViewController(animated: true) // revient au conroller precedent qd la recette n'est plus en favoris
             sender.image = UIImage(systemName: "star")
-            alertDeleteRecipeFavorite()
             coreDataManager.deleteRecipe(name: recipe.name)
-          
+            
+            if tabBarController?.selectedIndex == 1 { // index tabBar
+            navigationController?.popViewController(animated: true)  // revient au conroller precedent qd la recette n'est plus en favoris
+            }
+
         case false:
             // si la recette n'est pas en favoris , l'ajouter et modifier l'icone
             sender.image = UIImage(systemName: "star.fill")
-            alertAddRecipeFavorite()
             // ajouter la recette en favoris
-            coreDataManager.createTask(name: recipe.name, calories: 0.0, time: recipe.time, ingredients: recipe.ingredients, url: recipe.url, image: recipe.image)
+            coreDataManager.createTask(name: recipe.name, calories: recipe.calories , time: recipe.time, ingredients: recipe.ingredients, url: recipe.url, image: recipe.image)
         }
-
-
-        
     }
 }
 
-extension RecipeController : UITableViewDataSource {
+extension RecipeViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeDetails?.ingredients.count ?? 0
     }

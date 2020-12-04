@@ -88,7 +88,7 @@ struct RecipeDetails {
     let url : String
     let time : String
     let ingredients : [String]
-    let image : Data
-    
-    // ajout calories
+    let image : Data?
+    let calories : Double
+   
 }

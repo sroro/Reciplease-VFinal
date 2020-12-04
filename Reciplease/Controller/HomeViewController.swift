@@ -7,16 +7,21 @@
 //
 
 import UIKit
-import Alamofire
 
-class HomeViewController: UIViewController {
-    var dataReciplease = RequestService()
-    var arrayIngredients = [String]()
-    var dataRecipes : RecipeJSON?
+final class HomeViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private  let dataReciplease = RequestService()
+    private  var arrayIngredients = [String]()
+    private  var dataRecipes : RecipeJSON?
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var ingredientTableView: UITableView!
+    
+    // MARK: - ViewLifeCycle
     
     override func viewDidAppear(_ animated: Bool) {
         ingredientTextField.backgroundColor? = .white
@@ -40,7 +45,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func searchRecipesButton(_ sender: Any) {
-       
+        
         // arrayIngredients.map{$0}.joined(separator: ",") = transformer le tableau en string sans espace
         dataReciplease.getData(ingredient:arrayIngredients.map{$0}.joined(separator: ",")) { result in
             switch result {
@@ -56,16 +61,12 @@ class HomeViewController: UIViewController {
         }
     }
     
-    // passage de données vers controller ListRecipes
+    // passage de données vers controller RecipeListVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToTableView" {
-            let vcDestination = segue.destination as? ListRecipes
+            let vcDestination = segue.destination as? RecipeListViewController
             vcDestination?.recipes = dataRecipes?.hits
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 }
 
@@ -82,7 +83,6 @@ extension HomeViewController: UITableViewDataSource{
         cell.textLabel?.textColor = .white
         return cell
     }
-    
 }
 
 

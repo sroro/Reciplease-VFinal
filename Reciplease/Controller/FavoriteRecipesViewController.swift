@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import CoreData
 
-class FavoriteRecipesController : UITableViewController {
+final class FavoriteRecipesViewController : UITableViewController {
     
-    var coreDataManager : CoreDataManager?
-    var recipeDetails : RecipeDetails?
-    var recipeInformation : RecipeInformation?
+    private var coreDataManager : CoreDataManager?
+    private var recipeDetails : RecipeDetails?
+    private var recipeInformation : RecipeInformation?
     
     
     override func viewDidLoad() {
@@ -56,13 +55,11 @@ class FavoriteRecipesController : UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let recipeInformation = recipeInformation else { return }
         if segue.identifier == "segueFavoriteToRecipe" {
-            let successVC = segue.destination as! RecipeController
-            let recipeDetails = RecipeDetails(name: recipeInformation.name!, url: recipeInformation.url!, time: recipeInformation.time!, ingredients: recipeInformation.ingredients!, image: recipeInformation.image!)
+            let successVC = segue.destination as! RecipeViewController
+            let recipeDetails = RecipeDetails(name: recipeInformation.name ?? "Title", url: recipeInformation.url ?? "", time: recipeInformation.time ?? "0min", ingredients: recipeInformation.ingredients ?? [], image: recipeInformation.image ?? nil, calories: recipeInformation.calories)
             successVC.recipeDetails = recipeDetails
         }
     }
     
 }
 
-
-// revenir en arriere quand on enleve la recette des favoris
