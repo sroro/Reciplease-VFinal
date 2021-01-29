@@ -52,7 +52,7 @@ enum RecipeError: Error {
 }
 
 //MARK: - class Request Service
-class RequestService {
+final class RequestService {
     
     private let session: Alamo
     

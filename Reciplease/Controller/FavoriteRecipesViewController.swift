@@ -60,6 +60,5 @@ final class FavoriteRecipesViewController : UITableViewController {
             successVC.recipeDetails = recipeDetails
         }
     }
-    
 }
 

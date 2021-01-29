@@ -10,12 +10,12 @@ import Foundation
 import Alamofire
 
 protocol Alamo {
-    func request(with url: URL, callBack: @escaping (DataResponse<Any>) -> Void)
+    func request(with url: URL, callBack: @escaping (AFDataResponse<Any>) -> Void)
 }
 
 class DataReciplease:Alamo {
-    func request(with url: URL, callBack: @escaping (DataResponse<Any>) -> Void) {
-        Alamofire.request(url).validate().responseJSON { (responseData) in
+    func request(with url: URL, callBack: @escaping (AFDataResponse<Any>) -> Void) {
+        AF.request(url).validate().responseJSON { (responseData) in
             callBack(responseData)
         }
     }
