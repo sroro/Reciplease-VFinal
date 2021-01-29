@@ -16,7 +16,6 @@ class CoreDataManagerTests: XCTestCase {
 
     var coreDataStack: MockCoreDataStack!
     var coreDataManager: CoreDataManager!
-//    let stringImageUrl = "https://www.edamam.com/web-img/9c4/9c42e4c658b8e1c8d71946d71d48813a.jpg"
     let data = Data("https://www.edamam.com/web-img/9c4/9c42e4c658b8e1c8d71946d71d48813a.jpg".utf8)
 
     //MARK: - Tests Life Cycle
@@ -61,8 +60,9 @@ class CoreDataManagerTests: XCTestCase {
     
     func testRegisteredRecipes_WhenEntityEntityIsCreated_ThenShouldBeCorrectlyRegistered() {
         coreDataManager.createTask(name: "chicken salad", calories: 10.0, time: "2", ingredients: ["chicken,cheese"], url: "www.edanam.org", image: data )
-        coreDataManager.isRecipeRegistered(name: "chicken salad")
-        XCTAssertTrue(coreDataStack)
+        let isRegistered = coreDataManager.isRecipeRegistered(name: "chicken salad")
+        XCTAssertTrue(isRegistered)
+       
         
   
     }
