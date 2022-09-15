@@ -1,16 +1,56 @@
+////
+////  RecipeJSON.swift
+////  Reciplease
+////
+////  Created by Rodolphe Schnetzer on 28/08/2020.
+////  Copyright © 2020 Rodolphe Schnetzer. All rights reserved.
+////
 //
-//  RecipeJSON.swift
-//  Reciplease
+//import Foundation
 //
-//  Created by Rodolphe Schnetzer on 28/08/2020.
-//  Copyright © 2020 Rodolphe Schnetzer. All rights reserved.
 //
+//// MARK: - Welcome
+//struct RecipeJSON: Decodable {
+//    let q: String
+//    let from, to: Int
+//    let more: Bool
+//    let count: Int
+//    let hits: [Hit]
+//}
+//
+//// MARK: - Hit
+//struct Hit: Decodable {
+//    let recipe: Recipe
+//    let bookmarked, bought: Bool
+//}
+//
+//// MARK: - Recipe
+//struct Recipe: Decodable {
+//    let label: String
+//    let image: String
+//    let url: String
+//    let ingredientLines: [String]
+//    let ingredients: [Ingredients]
+//    let calories: Double
+//    let totalTime: Int
+//}
+//
+//enum Unit: String, Decodable {
+//    case g = "g"
+//    case kcal = "kcal"
+//}
+//
+//// MARK: - Ingredient
+//struct Ingredients: Decodable {
+//    let text: String
+//    let weight: Double
+//    let image: String?
+//}
 
 import Foundation
 
-
-// MARK: - Welcome
-struct RecipeJSON: Decodable {
+// MARK: - WeatherData
+struct RecipeJSON: Codable {
     let q: String
     let from, to: Int
     let more: Bool
@@ -19,33 +59,71 @@ struct RecipeJSON: Decodable {
 }
 
 // MARK: - Hit
-struct Hit: Decodable {
+struct Hit: Codable {
     let recipe: Recipe
-    let bookmarked, bought: Bool
 }
 
 // MARK: - Recipe
-struct Recipe: Decodable {
+struct Recipe: Codable {
+    let uri: String
     let label: String
     let image: String
+    let source: String
     let url: String
-    let ingredientLines: [String]
-    let ingredients: [Ingredients]
-    let calories: Double
+    let shareAs: String
+    let yield: Int
+    let dietLabels, healthLabels, cautions, ingredientLines: [String]
+    let ingredients: [Ingredient]
+    let calories, totalWeight: Double
     let totalTime: Int
+    let cuisineType, mealType, dishType: [String]
+    let totalNutrients, totalDaily: [String: Total]
+    let digest: [Digest]
 }
 
-enum Unit: String, Decodable {
+// MARK: - Digest
+struct Digest: Codable {
+    let label, tag: String
+    let schemaOrgTag: String?
+    let total: Double
+    let hasRDI: Bool
+    let daily: Double
+    let unit: Unit
+    let sub: [Digest]?
+}
+
+enum Unit: String, Codable {
+    case empty = "%"
     case g = "g"
     case kcal = "kcal"
+    case mg = "mg"
+    case µg = "µg"
 }
 
 // MARK: - Ingredient
-struct Ingredients: Decodable {
+struct Ingredient: Codable {
     let text: String
+    let quantity: Double
+    let measure: String?
+    let food: String
     let weight: Double
-    let image: String?
+    let foodCategory, foodID: String
+    let image: String
+
+    enum CodingKeys: String, CodingKey {
+        case text, quantity, measure, food, weight, foodCategory
+        case foodID = "foodId"
+        case image
+    }
 }
+
+// MARK: - Total
+struct Total: Codable {
+    let label: String
+    let quantity: Double
+    let unit: Unit
+}
+
 
 enum RecipeError: Error {
     case noData, incorrectResponse, undecodable

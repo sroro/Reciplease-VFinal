@@ -10,7 +10,6 @@
 		2346A879C9D94600C9C69888 /* Pods_RecipleaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2731E468827E85762A6833 /* Pods_RecipleaseTests.framework */; };
 		5E93565E4D97817CC30F4D53 /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595A66BB88473FF13A78B2CE /* Pods_Reciplease.framework */; };
 		9427DBD025BF063C0006CA65 /* RecipeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427DBCF25BF063C0006CA65 /* RecipeServiceTests.swift */; };
-		94517BD7251DE9B5008D663B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94517BD6251DE9B5008D663B /* Assets.xcassets */; };
 		94535592252CA27000B86ACF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94535591252CA27000B86ACF /* CoreDataStack.swift */; };
 		94535596252CA38D00B86ACF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94535595252CA38D00B86ACF /* CoreDataManager.swift */; };
 		9453559E2530536B00B86ACF /* FavoriteRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9453559D2530536B00B86ACF /* FavoriteRecipesViewController.swift */; };
@@ -55,7 +54,6 @@
 		5D182780871E40378E030D09 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
 		7A02721A94EBA41053EDF58E /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 		9427DBCF25BF063C0006CA65 /* RecipeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceTests.swift; sourceTree = "<group>"; };
-		94517BD6251DE9B5008D663B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../Downloads/AppIcons/Assets.xcassets; sourceTree = "<group>"; };
 		94535591252CA27000B86ACF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		94535595252CA38D00B86ACF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9453559D2530536B00B86ACF /* FavoriteRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesViewController.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 				94EDBE9624F6B3C700BB1F64 /* Model */,
 				94EDBE9524F6B3AB00BB1F64 /* Supported Files */,
 				94EDBE9424F6B39000BB1F64 /* Controller */,
-				94EDBE9324F6B37100BB1F64 /* View */,
 			);
 			path = Reciplease;
 			sourceTree = "<group>";
@@ -168,6 +165,7 @@
 				94EDBE9B24F7ECB200BB1F64 /* RecipeListViewController.swift */,
 				946972A9250008A00081598B /* RecipeViewController.swift */,
 				9453559D2530536B00B86ACF /* FavoriteRecipesViewController.swift */,
+				94EDBE9324F6B37100BB1F64 /* View */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,7 +175,6 @@
 			children = (
 				94EDBE6E24F6B00D00BB1F64 /* AppDelegate.swift */,
 				94EDBE7024F6B00D00BB1F64 /* SceneDelegate.swift */,
-				94517BD6251DE9B5008D663B /* Assets.xcassets */,
 				94EDBE7F24F6B00E00BB1F64 /* Info.plist */,
 			);
 			path = "Supported Files";
@@ -316,7 +313,6 @@
 				94EDBE7624F6B00D00BB1F64 /* Main.storyboard in Resources */,
 				949C7A2A25B0CB4E00E5BE9D /* Reciplease.json in Resources */,
 				94EDBEA724FD164500BB1F64 /* RecipeTableViewCell.xib in Resources */,
-				94517BD7251DE9B5008D663B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
